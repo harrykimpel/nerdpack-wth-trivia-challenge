@@ -1,0 +1,7 @@
+{
+    "schemaType": "LAUNCHER",
+    "id": "trivia-challenge-launcher",
+    "displayName": "WTH Trivia Challenge",
+    "description": "Launch the WTH Trivia Challenge trivia game",
+    "rootNerdletId": "trivia-challenge"
+}

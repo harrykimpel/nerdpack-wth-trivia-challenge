@@ -1,0 +1,816 @@
+/* ===== Root & Theme ===== */
+.wth-trivia-root {
+    /* New Relic Brand — Primary */
+    --wth-base-white: #F1F0E4;
+    --wth-base-black: #080F11;
+    --wth-matte-white: #E5E4D8;
+    --wth-matte-black: #151B20;
+
+    /* New Relic Brand — Accents */
+    --wth-green: #1CE783;
+    --wth-orange: #FF6C37;
+    --wth-magenta: #FF42C2;
+    --wth-blue: #0095FF;
+    --wth-gold: #FFD23D;
+
+    /* Semantic — Dark mode defaults */
+    --wth-bg: var(--wth-base-black);
+    --wth-bg-alt: var(--wth-matte-black);
+    --wth-fg: var(--wth-base-white);
+    --wth-fg-muted: var(--wth-matte-white);
+    --wth-accent: var(--wth-green);
+    --wth-card: rgba(21, 27, 32, 0.85);
+    --wth-card-solid: #1a2228;
+    --wth-shadow: rgba(0, 0, 0, 0.4);
+    --wth-border: rgba(241, 240, 228, 0.1);
+    --wth-input-bg: rgba(255, 255, 255, 0.08);
+    --wth-input-border: rgba(255, 255, 255, 0.2);
+    --wth-input-color: #fff;
+    --wth-overlay: rgba(255, 255, 255, 0.04);
+    --wth-badge-bg: rgba(255, 255, 255, 0.12);
+    --wth-disabled-fg: rgba(255, 255, 255, 0.35);
+    --wth-disabled-border: rgba(255, 255, 255, 0.08);
+    --wth-question-color: #ffffff;
+    --wth-tile-bg-from: var(--wth-matte-black);
+    --wth-tile-bg-to: var(--wth-base-black);
+    --wth-team-card-bg: linear-gradient(160deg, rgba(28, 231, 131, 0.12) 0%, var(--wth-bg) 90%);
+    --wth-team-card-border: rgba(28, 231, 131, 0.15);
+    --wth-account-picker-bg: rgba(0, 0, 0, 0.25);
+    --wth-account-picker-border: rgba(255, 255, 255, 0.08);
+
+    background: radial-gradient(circle at top, var(--wth-bg-alt) 0%, var(--wth-bg) 65%);
+    color: var(--wth-fg);
+    font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    * {
+        box-sizing: border-box;
+    }
+
+    code {
+        background: var(--wth-badge-bg);
+        padding: 0.15em 0.4em;
+        border-radius: 4px;
+        font-size: 0.9em;
+    }
+}
+
+/* ===== Light Theme Overrides ===== */
+.wth-trivia-root.wth-theme-light {
+    --wth-bg: var(--wth-base-white);
+    --wth-bg-alt: #fafaf2;
+    --wth-fg: var(--wth-base-black);
+    --wth-fg-muted: #4a4d42;
+    --wth-card: rgba(229, 228, 216, 0.75);
+    --wth-card-solid: #e8e7db;
+    --wth-shadow: rgba(0, 0, 0, 0.1);
+    --wth-border: rgba(8, 15, 17, 0.12);
+    --wth-input-bg: rgba(0, 0, 0, 0.05);
+    --wth-input-border: rgba(0, 0, 0, 0.18);
+    --wth-input-color: var(--wth-base-black);
+    --wth-overlay: rgba(0, 0, 0, 0.03);
+    --wth-badge-bg: rgba(0, 0, 0, 0.08);
+    --wth-disabled-fg: rgba(0, 0, 0, 0.3);
+    --wth-disabled-border: rgba(0, 0, 0, 0.1);
+    --wth-question-color: var(--wth-base-black);
+    --wth-tile-bg-from: #e8e7db;
+    --wth-tile-bg-to: #dddcd0;
+    --wth-team-card-bg: linear-gradient(160deg, rgba(28, 231, 131, 0.08) 0%, var(--wth-bg) 90%);
+    --wth-team-card-border: rgba(28, 231, 131, 0.25);
+    --wth-account-picker-bg: rgba(0, 0, 0, 0.04);
+    --wth-account-picker-border: rgba(0, 0, 0, 0.08);
+
+    background: radial-gradient(circle at top, var(--wth-bg-alt) 0%, var(--wth-bg) 65%);
+}
+
+/* ===== Account Picker ===== */
+.wth-account-picker {
+    padding: 0.75rem 1.5rem;
+    background: var(--wth-account-picker-bg);
+    border-bottom: 1px solid var(--wth-account-picker-border);
+}
+
+/* ===== App Shell ===== */
+.wth-trivia {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1 1 0;
+    min-height: 900px;
+    width: 100%;
+}
+
+/* ===== Content Row ===== */
+.wth-content-row {
+    display: flex;
+    gap: 1.5rem;
+    flex: 1 1 0;
+    min-height: 0;
+}
+
+.wth-content-main {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.wth-video-sidebar {
+    flex: 0 0 280px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.wth-video {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    object-fit: cover;
+    filter: invert(1) hue-rotate(180deg);
+}
+
+.wth-game-mode .wth-content-row {
+    display: block;
+}
+
+@media (max-width: 900px) {
+    .wth-video-sidebar {
+        display: none;
+    }
+}
+
+/* ===== Header ===== */
+.wth-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding-top: 1.5rem;
+}
+
+.wth-game-mode .wth-header {
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+    padding-top: 0.5rem;
+}
+
+.wth-game-mode .wth-header>div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.wth-logo-text {
+    font-size: 2rem;
+    margin: 0;
+    background: linear-gradient(135deg, var(--wth-green) 0%, var(--wth-gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+}
+
+.wth-game-mode .wth-logo-text {
+    font-size: 1.4rem;
+}
+
+.wth-controls {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.wth-shortcut-control {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.wth-shortcut-hint {
+    font-size: 0.78rem;
+    color: var(--wth-fg-muted);
+    background: var(--wth-overlay);
+    border: 1px solid var(--wth-border);
+    border-radius: 999px;
+    padding: 0.25rem 0.55rem;
+    white-space: nowrap;
+}
+
+.wth-game-mode .wth-controls {
+    margin-top: 0;
+}
+
+/* ===== Scoreboard ===== */
+.wth-scoreboard {
+    background: var(--wth-card);
+    border-radius: 20px;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 20px 40px var(--wth-shadow);
+
+    h2 {
+        margin: 0 0 0.5rem;
+    }
+}
+
+.wth-scoreboard-help {
+    margin: 0 0 0.9rem;
+    font-size: 0.92rem;
+}
+
+.wth-team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+}
+
+.wth-team-card {
+    background: var(--wth-team-card-bg);
+    border-radius: 16px;
+    padding: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.7rem;
+    box-shadow: inset 0 0 0 1px var(--wth-team-card-border);
+}
+
+.wth-team-card-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+
+.wth-team-subtotals {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    gap: 0.75rem;
+}
+
+.team-name {
+    font-weight: 600;
+}
+
+.team-score {
+    font-size: 1.6rem;
+    color: var(--wth-green);
+}
+
+.wth-team-adjustments {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.wth-bonus-label {
+    margin: 0;
+    font-size: 0.8rem;
+}
+
+.wth-bonus-quick,
+.wth-bonus-custom {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.wth-bonus-input {
+    width: 4.8rem;
+    min-width: 4.8rem;
+    text-align: right;
+}
+
+.wth-select {
+    background: var(--wth-input-bg);
+    border: 1px solid var(--wth-input-border);
+    border-radius: 10px;
+    padding: 0.35rem 0.5rem;
+    color: var(--wth-input-color);
+    min-width: 4.5rem;
+}
+
+.wth-judge-scorecard {
+    h2 {
+        margin-bottom: 0.4rem;
+    }
+}
+
+.wth-judge-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.wth-judge-team-card {
+    background: var(--wth-overlay);
+    border: 1px solid var(--wth-border);
+    border-radius: 14px;
+    padding: 0.9rem;
+}
+
+.wth-judge-team-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin-bottom: 0.75rem;
+
+    h3 {
+        margin: 0;
+    }
+}
+
+.wth-judge-team-totals {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+    color: var(--wth-fg-muted);
+}
+
+.wth-judge-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th,
+    td {
+        border-bottom: 1px solid var(--wth-border);
+        padding: 0.45rem 0.4rem;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    th:nth-child(2),
+    td:nth-child(2),
+    th:nth-child(4),
+    td:nth-child(4) {
+        text-align: right;
+    }
+
+    tfoot th {
+        border-bottom: 0;
+        padding-top: 0.65rem;
+    }
+}
+
+/* ===== Panel ===== */
+.wth-panel {
+    background: var(--wth-card);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 20px 40px var(--wth-shadow);
+
+    h2 {
+        margin-top: 0;
+    }
+}
+
+.wth-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+}
+
+.muted {
+    color: var(--wth-fg-muted);
+}
+
+/* ===== Setup: Team Editor ===== */
+.wth-team-editor {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.wth-team-row {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+/* ===== Inputs ===== */
+.wth-input {
+    flex: 1;
+    background: var(--wth-input-bg);
+    border: 1px solid var(--wth-input-border);
+    border-radius: 12px;
+    padding: 0.6rem 0.9rem;
+    color: var(--wth-input-color);
+    font-size: 1rem;
+
+    &:focus {
+        outline: 2px solid rgba(28, 231, 131, 0.8);
+    }
+
+    &.small {
+        flex: 0 0 auto;
+        width: 110px;
+    }
+}
+
+/* ===== Options ===== */
+.wth-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.wth-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--wth-overlay);
+    border-radius: 12px;
+    padding: 0.6rem 0.8rem;
+}
+
+/* ===== Actions ===== */
+.wth-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+/* ===== Buttons ===== */
+.wth-button {
+    background: var(--wth-green);
+    color: var(--wth-base-black);
+    border: none;
+    border-radius: 999px;
+    padding: 0.6rem 1.4rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+    &:hover:not(:disabled) {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 25px rgba(28, 231, 131, 0.35);
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    &.ghost {
+        background: transparent;
+        color: var(--wth-green);
+        border: 1px solid rgba(28, 231, 131, 0.5);
+    }
+
+    &.small {
+        padding: 0.35rem 0.9rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* ===== Board (Orbit Layout) ===== */
+.wth-board {
+    background: var(--wth-card);
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 20px 40px var(--wth-shadow);
+    overflow: hidden;
+    //min-height: 800px;
+    flex: 0 0 auto;
+}
+
+.wth-orbit {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 60%;
+}
+
+.wth-orbit-hub {
+    position: absolute;
+    width: 9%;
+    aspect-ratio: 1;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    background: radial-gradient(circle, var(--wth-green) 0%, #0fa85e 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: clamp(0.6rem, 1.3vw, 1rem);
+    color: var(--wth-base-black);
+    text-align: center;
+    line-height: 1.2;
+    z-index: 10;
+    box-shadow: 0 0 30px rgba(28, 231, 131, 0.4), 0 0 60px rgba(28, 231, 131, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.wth-orbit-tile {
+    position: absolute;
+    translate: -50% -50%;
+    width: clamp(48px, 5.5vw, 68px);
+    height: clamp(48px, 5.5vw, 68px);
+    border-radius: 50%;
+    border: 2px solid var(--wth-team-card-border);
+    background: radial-gradient(circle at 35% 35%, var(--wth-tile-bg-from) 0%, var(--wth-tile-bg-to) 100%);
+    color: var(--wth-green);
+    font-weight: 700;
+    font-size: clamp(0.75rem, 1.3vw, 1.05rem);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    z-index: 2;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 15px var(--wth-shadow);
+
+    &:hover:not(:disabled) {
+        transform: scale(1.25);
+        box-shadow: 0 0 24px rgba(28, 231, 131, 0.45), 0 8px 25px var(--wth-shadow);
+        z-index: 20;
+        border-color: var(--wth-green);
+    }
+
+    &:disabled {
+        background: var(--wth-card);
+        border-color: var(--wth-disabled-border);
+        cursor: not-allowed;
+        color: var(--wth-disabled-fg);
+    }
+}
+
+.wth-orbit-tile-value {
+    text-shadow: 0 1px 3px var(--wth-shadow);
+}
+
+.wth-orbit-tile-used {
+    font-size: clamp(0.8rem, 1.4vw, 1.1rem);
+}
+
+.wth-orbit-label {
+    position: absolute;
+    translate: -50% -50%;
+    background: linear-gradient(135deg, var(--wth-green) 0%, var(--wth-gold) 100%);
+    color: var(--wth-base-black);
+    font-weight: 700;
+    font-size: clamp(0.75rem, 1.2vw, 1rem);
+    padding: 0.35rem 0.8rem;
+    border-radius: 1rem;
+    white-space: nowrap;
+    z-index: 5;
+    box-shadow: 0 2px 12px rgba(28, 231, 131, 0.25);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* ===== Question Phase ===== */
+.wth-question {
+    h2 {
+        margin: 1rem 0 0;
+        font-size: 2rem;
+        color: var(--wth-question-color);
+        background: rgba(28, 231, 131, 0.08);
+        border: 1px solid rgba(28, 231, 131, 0.3);
+        border-radius: 18px;
+        padding: 1.25rem 1.5rem;
+        box-shadow: 0 14px 30px var(--wth-shadow);
+    }
+}
+
+.wth-question-text {
+    white-space: pre-wrap;
+    tab-size: 4;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.wth-answer-text {
+    white-space: pre-wrap;
+    tab-size: 4;
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: manual;
+}
+
+.wth-question-header {
+    display: flex;
+    gap: 0.6rem;
+}
+
+.wth-badge {
+    background: var(--wth-badge-bg);
+    border-radius: 999px;
+    padding: 0.4rem 1rem;
+    font-weight: 600;
+
+    &.timer {
+        background: var(--wth-input-border);
+    }
+}
+
+/* ===== Buzzer ===== */
+.wth-buzzer {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 16px;
+    background: var(--wth-overlay);
+}
+
+.wth-buzzer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.6rem;
+    margin-top: 0.8rem;
+}
+
+/* ===== Answer ===== */
+.wth-answer {
+    background: rgba(28, 231, 131, 0.1);
+    border-radius: 16px;
+    padding: 1rem 1.2rem;
+    margin-top: 1.5rem;
+    font-size: 2rem;
+
+    h3 {
+        margin-top: 0;
+        color: var(--wth-green);
+    }
+}
+
+/* ===== Score Actions ===== */
+.wth-score-actions {
+    margin-top: 1.5rem;
+}
+
+.wth-quick-score {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+}
+
+.wth-team-score-grid {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.wth-team-score-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.wth-team-score-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* ===== Winner ===== */
+.wth-winner {
+    text-align: center;
+}
+
+.wth-winner-name {
+    font-size: 2rem;
+    color: var(--wth-green);
+    margin: 1rem 0 1.5rem;
+}
+
+.wth-podium {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.wth-podium-card {
+    min-width: 11rem;
+    padding: 1rem 1.25rem;
+    border-radius: 1rem;
+    border: 1px solid var(--wth-border);
+    background: var(--wth-overlay);
+    box-shadow: 0 0.5rem 1.5rem var(--wth-shadow);
+
+    p {
+        margin: 0.25rem 0;
+    }
+
+    &.place-1 {
+        transform: scale(1.15);
+        border-color: var(--wth-green);
+    }
+
+    &.place-2 {
+        transform: scale(1.08);
+        border-color: #c0c0c0;
+    }
+
+    &.place-3 {
+        transform: scale(1.02);
+        border-color: #cd7f32;
+    }
+}
+
+.wth-podium-medal {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.wth-podium-place {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.wth-podium-team {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.wth-podium-score {
+    font-weight: 600;
+    color: var(--wth-green);
+}
+
+.wth-other-teams-heading {
+    margin: 0.5rem 0;
+}
+
+.wth-leaderboard-table {
+    width: min(100%, 30rem);
+    margin: 0 auto 1rem;
+    border-collapse: collapse;
+    text-align: left;
+
+    th,
+    td {
+        padding: 0.5rem 0.75rem;
+        border-bottom: 1px solid var(--wth-border);
+    }
+
+    th:last-child,
+    td:last-child {
+        text-align: right;
+    }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+    .wth-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .wth-orbit-label {
+        font-size: clamp(0.4rem, 1.4vw, 0.65rem);
+        padding: 0.2rem 0.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .wth-podium-card {
+
+        &.place-1,
+        &.place-2,
+        &.place-3 {
+            transform: none;
+        }
+    }
+
+    .wth-orbit-label {
+        font-size: 0.4rem;
+        padding: 0.15rem 0.35rem;
+    }
+
+    .wth-orbit-hub {
+        font-size: 0.4rem;
+    }
+
+    .wth-judge-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .wth-judge-team-header {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "schemaType": "NERDLET",
+    "id": "trivia-challenge",
+    "displayName": "WTH Trivia Challenge",
+    "description": "A Jeopardy-style trivia game"
+}

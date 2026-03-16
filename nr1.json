@@ -1,0 +1,6 @@
+{
+  "schemaType": "NERDPACK",
+  "id": "318151c7-fb11-4bfb-8777-44172761d676",
+  "displayName": "WTH Trivia Challenge",
+  "description": "A Jeopardy-style trivia game running inside New Relic, powered by custom events."
+}

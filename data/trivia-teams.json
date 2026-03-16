@@ -1,0 +1,14 @@
+[
+    {
+        "eventType": "TriviaTeam",
+        "teamName": "Team Azure"
+    },
+    {
+        "eventType": "TriviaTeam",
+        "teamName": "Team DevRel"
+    },
+    {
+        "eventType": "TriviaTeam",
+        "teamName": "Team GTM-CA"
+    }
+]

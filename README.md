@@ -176,4 +176,3 @@ nerdpack-trivia-challenge/
 3. **Question** — Displays the prompt; optionally use buzzer and timer
 4. **Answer** — Reveals the answer; award or penalize points per team
 5. **Winner** — Podium display with rankings; option to play again
-# nerdpack-wth-trivia-challenge
