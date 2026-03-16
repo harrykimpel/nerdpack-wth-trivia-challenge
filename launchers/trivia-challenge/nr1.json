@@ -3,5 +3,6 @@
     "id": "trivia-challenge-launcher",
     "displayName": "WTH Trivia Challenge",
     "description": "Launch the WTH Trivia Challenge trivia game",
-    "rootNerdletId": "trivia-challenge"
+    "rootNerdletId": "trivia-challenge",
+    "icon": "https://raw.githubusercontent.com/harrykimpel/nerdpack-wth-trivia-challenge/master/assets/trivia-challenge-quiz/assets/nerdpack-wth-trivia-challenge-icon.png"
 }
