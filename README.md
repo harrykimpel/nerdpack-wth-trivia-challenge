@@ -11,7 +11,7 @@ A Jeopardy-style trivia game that runs inside the New Relic platform as a Nerdpa
 ## Quick Start
 
 ```bash
-cd nerdpack-trivia-challenge
+cd trivia-challenge-quiz
 
 # Install dependencies
 npm install
@@ -91,7 +91,7 @@ curl -X POST "https://insights-collector.newrelic.com/v1/accounts/${NEW_RELIC_AC
 
 The `data/` directory includes pre-built JSON files and a convenience script to seed everything at once:
 
-```
+```text
 data/
 ├── insert.sh           # Sends both files to the Event API
 ├── trivia-teams.json   # TriviaTeam events
@@ -126,12 +126,60 @@ FROM TriviaBoard SELECT latest(prompt), latest(answer) FACET category, value SIN
 
 The Nerdpack uses NerdGraph to run these NRQL queries:
 
-| Data        | Query                                                                                       |
-| ----------- | ------------------------------------------------------------------------------------------- |
-| Teams       | `FROM TriviaTeam SELECT uniques(teamName) SINCE 1 week ago LIMIT MAX`                      |
-| Board       | `FROM TriviaBoard SELECT latest(prompt), latest(answer) FACET category, value SINCE 1 week ago LIMIT MAX` |
+- Teams: `FROM TriviaTeam SELECT uniques(teamName) SINCE 1 week ago LIMIT MAX`
+- Board: `FROM TriviaBoard SELECT latest(prompt), latest(answer) FACET category, value SINCE 1 week ago LIMIT MAX`
 
 Using `latest()` with `FACET` ensures deduplication — if you update a question by sending a new event with the same `category` + `value`, the latest prompt/answer is used.
+
+## Competition Scoring Mode
+
+This Nerdpack supports two scoring layers:
+
+1. **Trivia points** from correct/incorrect question scoring
+2. **Judge scorecard points** from the competition rubric
+
+### Manual Bonus/Penalty Controls
+
+The main Teams scoreboard includes manual controls for each team:
+
+- Quick adjustments: `+1`, `+5`, `+10`, `-1`, `-5`, `-10`
+- Custom amount input with **Add** and **Deduct**
+
+Use these for bonus points, penalties, tie-break adjustments, or judge overrides during the event.
+
+### Judge Scorecard View
+
+Use the **Judge Scorecard** button in the app header to open a dedicated per-team rubric view.
+
+- Categories and weights:
+  - Solution Completeness (25)
+  - Observability Quality (20)
+  - AI Quality & Evaluation (20)
+  - Security Implementation (20)
+  - Demo Clarity & Engineering Excellence (15)
+- Input score per category: `0` to `4`
+- Per-row formula:
+
+```text
+Weighted Judge Points = (Score / 4) x Weight x 50
+```
+
+- Judge score maximum: `5000` points (`100 x 50`)
+
+The app calculates and displays:
+
+- Trivia subtotal
+- Judge subtotal
+- Combined total (`Trivia + Judge`)
+
+### Leaderboard During Gameplay
+
+You can open the leaderboard at any time during gameplay:
+
+- Click **Leaderboard** in the header
+- Or press keyboard shortcut: `L`
+
+When opened mid-game, use **Back to Game** (or press `L` again) to return to the exact previous phase.
 
 ## Deploying
 
@@ -150,8 +198,8 @@ After subscribing, the "WTH Trivia Challenge" launcher will appear in the New Re
 
 ## Project Structure
 
-```
-nerdpack-trivia-challenge/
+```text
+trivia-challenge-quiz/
 ├── nr1.json                          # Nerdpack manifest
 ├── package.json
 ├── launchers/
@@ -166,13 +214,21 @@ nerdpack-trivia-challenge/
             ├── SetupPhase.js         # Team editing, options, start
             ├── BoardPhase.js         # Orbital board layout
             ├── QuestionPhase.js      # Question, buzzer, answer, scoring
+            ├── JudgeScorecardPhase.js # Per-team rubric entry and weighted judge totals
             └── WinnerPhase.js        # Podium and leaderboard
 ```
 
 ## Game Flow
 
 1. **Setup** — Edit team names (loaded from `TriviaTeam` events), configure timer/buzzer, start game
+    ![Nerdpack WTH Trivia Challenge Setup](./assets/nerdpack-wth-trivia-challenge-setup.png)
 2. **Board** — Orbital layout showing all categories and point values; click a tile to select a question
+    ![Nerdpack WTH Trivia Challenge Board](./assets/nerdpack-wth-trivia-challenge-board.png)
 3. **Question** — Displays the prompt; optionally use buzzer and timer
+    ![Nerdpack WTH Trivia Challenge Question](./assets/nerdpack-wth-trivia-challenge-question.png)
 4. **Answer** — Reveals the answer; award or penalize points per team
-5. **Winner** — Podium display with rankings; option to play again
+    ![Nerdpack WTH Trivia Challenge Answer](./assets/nerdpack-wth-trivia-challenge-answer.png)
+5. **Judge Scorecard (optional, anytime)** — Enter rubric scores per team; totals are weighted and multiplied by 50
+    ![Nerdpack WTH Trivia Challenge Judge Scorecard](./assets/nerdpack-wth-trivia-challenge-judge-scorecard.png)
+6. **Winner / Leaderboard** — Shows rankings by **combined total** (Trivia + Judge); can be viewed during gameplay
+    ![Nerdpack WTH Trivia Challenge Winner Podium](./assets/nerdpack-wth-trivia-challenge-leaderboard.png)
